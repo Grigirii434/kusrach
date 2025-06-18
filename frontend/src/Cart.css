@@ -1,0 +1,122 @@
+.cart-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9fb;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.cart-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #333;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-details {
+  flex-grow: 1;
+}
+
+.cart-item-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #222;
+}
+
+.cart-item-price {
+  font-size: 16px;
+  color: #666;
+}
+
+.cart-item-quantity {
+  font-size: 14px;
+  color: #888;
+}
+
+.cart-summary {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.cart-total {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.cart-order-btn {
+  background: linear-gradient(to right, #7b2ff7, #f107a3);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart-order-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(123, 47, 247, 0.3);
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #888;
+}
+.order_btn{
+    display: inline-block;	
+	box-sizing: border-box;
+	padding: 0 25px;
+	margin: 0 15px 15px 0;
+	outline: none;
+	border: 1px solid #fff;
+	border-radius: 50px;
+	height: 46px;
+	line-height: 46px;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	color: #444;
+	background-color: #fff;
+	box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+	cursor: pointer;
+	user-select: none;
+	appearance: none;
+	touch-action: manipulation;  
+	vertical-align: top;
+	transition: box-shadow 0.2s;
+}

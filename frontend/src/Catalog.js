@@ -1,11 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import './Catalog.css'; // Подключаем отдельный файл стилей
+import './Catalog.css';
 import { useParams, NavLink } from 'react-router-dom';
-
+import Cart from './Cart';
+import './Cart.css';
 export default function Catalog() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [cart, setCart] = useState(() => {
+    // Попытка загрузить корзину из localStorage
+    const savedCart = localStorage.getItem('cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+  const handleOrder = () => {
+  if (cart.length === 0) {
+    alert('Корзина пуста!');
+    return;
+  }
 
+  // Подготовим данные для отправки
+  const orderData = {
+    items: cart.map(({ id, quantity }) => ({ product_id: id, quantity })),
+  };
+
+  fetch('http://127.0.0.1:8000/api/orders/create/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderData),
+  })
+    .then(res => {
+      if (!res.ok) throw new Error('Ошибка при оформлении заказа');
+      return res.json();
+    })
+    .then(data => {
+      alert(`Заказ успешно оформлен! Номер заказа: ${data.order_id || data.id || 'неизвестен'}`);
+      setCart([]); // Очистим корзину
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Ошибка при оформлении заказа, попробуйте позже.');
+    });
+};
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/catalog/products/')
       .then(res => res.json())
@@ -19,6 +55,30 @@ export default function Catalog() {
       });
   }, []);
 
+  // При изменении корзины сохраняем в localStorage
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  // Функция добавления товара в корзину
+  const addToCart = (product) => {
+    setCart(prevCart => {
+      const existing = prevCart.find(item => item.id === product.id);
+      if (existing) {
+        // Если товар уже есть, увеличиваем количество
+        return prevCart.map(item =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        // Если товара нет, добавляем с quantity = 1
+        return [...prevCart, { ...product, quantity: 1 }];
+      }
+    });
+  };
+
+  // Считаем общее количество товаров в корзине
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <div className="catalog-container">
       <header className="header">
@@ -31,7 +91,7 @@ export default function Catalog() {
             <a href="#" className="nav-link">Контакты</a>
             <div className="cart-icon">
               <i className="fas fa-shopping-cart"></i>
-              <span className="cart-count">0</span>
+              <span className="cart-count">{cartCount}</span>
             </div>
           </nav>
         </div>
@@ -66,7 +126,10 @@ export default function Catalog() {
                     <p className="product-description">{p.description}</p>
                     <div className="product-footer">
                       <span className="product-price">{p.price} ₽</span>
-                      <button className="add-to-cart-btn">
+                      <button 
+                        className="add-to-cart-btn"
+                        onClick={() => addToCart(p)}
+                      >
                         <i className="fas fa-shopping-cart"></i> В корзину
                       </button>
                     </div>
@@ -77,13 +140,16 @@ export default function Catalog() {
           )}
         </div>
       </main>
+      <Cart cart={cart} setCart={setCart} onOrder={handleOrder} />         
+      {/* Пока просто покажем корзину ниже каталога */}
+      
 
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
             <div className="footer-section">
               <h3>О нас</h3>
-              <p>Fashion Store - это магазин модной одежды для тех, кто ценит стиль и качество.</p>
+              <p>Мужицкий магазин - это магазин модной одежды для тех, кто ценит стиль и качество.</p>
             </div>
             <div className="footer-section">
               <h3>Контакты</h3>
