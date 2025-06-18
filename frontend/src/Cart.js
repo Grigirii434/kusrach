@@ -33,9 +33,9 @@ export default function Cart({ cart, setCart, onOrder }) {
               <li key={item.id} className="cart-item">
                 <span>{item.title}</span>
                 <div className="quantity-controls">
-                  <button onClick={() => decreaseQuantity(item.id)}>-</button>
+                  <button onClick={() => decreaseQuantity(item.id)}> - </button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => increaseQuantity(item.id)}>+</button>
+                  <button onClick={() => increaseQuantity(item.id)}> + </button>
                 </div>
                 <span>{item.price * item.quantity} ₽</span>
                 <button className="remove-btn" onClick={() => removeItem(item.id)}>×</button>

@@ -85,13 +85,10 @@ export default function Catalog() {
         <div className="container">
           <h1 className="logo">Мужицкий магазин</h1>
           <nav className="nav">
-            <a href="#" className="nav-link">Главная</a>
-            <a href="#" className="nav-link">Каталог</a>
-            <a href="#" className="nav-link">О нас</a>
-            <a href="#" className="nav-link">Контакты</a>
+            
             <div className="cart-icon">
-              <i className="fas fa-shopping-cart"></i>
-              <span className="cart-count">{cartCount}</span>
+              
+              
             </div>
           </nav>
         </div>
@@ -153,21 +150,21 @@ export default function Catalog() {
             </div>
             <div className="footer-section">
               <h3>Контакты</h3>
-              <p><i className="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, 123</p>
-              <p><i className="fas fa-phone"></i> +7 (123) 456-78-90</p>
-              <p><i className="fas fa-envelope"></i> info@fashionstore.ru</p>
+              <p><i className="fas fa-map-marker-alt"></i> г. Ставрополь, ул. Родосская, 11</p>
+              <p><i className="fas fa-phone"></i> +7 (961) 585-82-80, +7 (918) 783-05-46</p>
+              <p><i className="fas fa-envelope"></i>grigirii434@gmail.com</p>
             </div>
             <div className="footer-section">
               <h3>Соцсети</h3>
               <div className="social-links">
                 <a href="#"><i className="fab fa-vk"></i></a>
-                <a href="#"><i className="fab fa-telegram"></i></a>
+                <a href="https://t.me/sidorenkovladjp"><i className="fab fa-telegram"></i></a>
                 <a href="#"><i className="fab fa-instagram"></i></a>
               </div>
             </div>
           </div>
           <div className="copyright">
-            <p>© 2023 Fashion Store. Все права защищены.</p>
+            <p>© 2025 Muzichkyi Store. Все права защищены.</p>
           </div>
         </div>
       </footer>
